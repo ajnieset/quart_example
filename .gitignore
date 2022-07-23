@@ -289,4 +289,4 @@ pip-selfcheck.json
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,venv,flask
 
 # Ignore DB file
-*.db
+src/quart_example/*.db
