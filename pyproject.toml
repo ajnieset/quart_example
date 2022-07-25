@@ -8,6 +8,7 @@ authors = ["Austin Nieset <ajnieset@gmail.com>"]
 python = "^3.10"
 quart = "^0.17.0"
 quart-schema = "^0.11.1"
+orm = { extras = ["sqlite"], version = "^0.3.1" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1"
@@ -24,4 +25,8 @@ asyncio_mode = "auto"
 
 [tool.poetry.scripts]
 init_db = "quart_example:init_db"
-start = "quart_example:run"
+start = "scripts:start"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]

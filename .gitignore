@@ -290,3 +290,4 @@ pip-selfcheck.json
 
 # Ignore DB file
 src/quart_example/*.db
+*.sqlite
