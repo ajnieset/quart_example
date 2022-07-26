@@ -4,7 +4,7 @@ from quart_schema import QuartSchema
 from quart_example.blueprints.user import blueprint as user_blueprint
 from quart_example.models.user import models
 
-schema = QuartSchema()
+schema = QuartSchema(convert_casing=True)
 
 
 def create_app() -> Quart:
@@ -13,7 +13,7 @@ def create_app() -> Quart:
 
     @app.get("/health")
     async def health():
-        return {"status": "healthy", "info": app.root_path}
+        return {"status": "healthy"}
 
     app.register_blueprint(user_blueprint)
 

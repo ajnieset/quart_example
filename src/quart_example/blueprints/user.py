@@ -1,5 +1,4 @@
 from dataclasses import asdict, dataclass
-from typing import List
 
 from orm import NoMatch
 from quart import Blueprint
@@ -18,21 +17,16 @@ class UserIn:
 
 
 @dataclass
-class UserData(UserIn):
+class UserData:
     id: int
+    username: str
+    email: str
+    password: str
 
 
 @dataclass
 class Users:
-    users: List[UserData]
-
-
-@blueprint.get("/users/")
-# @validate_response(Users, 200)
-async def get_users():
-    users = await User.objects.all()
-    users = [user.__dict__ for user in users]
-    return Users(users=users), 200
+    users: list[UserData]
 
 
 @blueprint.get("/users/<int:user_id>")
@@ -43,6 +37,14 @@ async def get_user(user_id):
     except NoMatch:
         return {}, 404
     return UserData(**user.__dict__), 200
+
+
+@blueprint.get("/users/")
+@validate_response(Users)
+async def get_users():
+    users = await User.objects.all()
+    users = [UserData(**user.__dict__) for user in users]
+    return Users(users=users), 200
 
 
 @blueprint.post("/users/")
