@@ -47,7 +47,7 @@ async def get_user(user_id):
 
 @blueprint.post("/users/")
 @validate_request(UserIn)
-# @validate_response(UserData, 201)
+@validate_response(UserData, 201)
 async def create_user(data: UserIn):
     new_user: UserModel = await UserModel.objects.create(**asdict(data))
     return UserData(**new_user.__dict__), 201
