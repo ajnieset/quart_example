@@ -287,14 +287,15 @@ test = ["appdirs (==1.4.4)", "pytest-cov (>=2.7)", "pytest-mock (>=3.6)", "pytes
 
 [[package]]
 name = "pluggy"
-version = "0.13.1"
+version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.6"
 
 [package.extras]
-dev = ["pre-commit", "tox"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "priority"
@@ -383,7 +384,7 @@ testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)", "flaky (>=3.5.0)", "mypy 
 
 [[package]]
 name = "quart"
-version = "0.17.0"
+version = "0.18.0"
 description = "A Python ASGI web microframework with the same API as Flask"
 category = "main"
 optional = false
@@ -397,15 +398,15 @@ hypercorn = ">=0.11.2"
 itsdangerous = "*"
 jinja2 = "*"
 markupsafe = "*"
-toml = "*"
-werkzeug = ">=2.0.0"
+werkzeug = ">=2.2.0"
 
 [package.extras]
+docs = ["pydata-sphinx-theme"]
 dotenv = ["python-dotenv"]
 
 [[package]]
 name = "quart-schema"
-version = "0.11.1"
+version = "0.12.0"
 description = "A Quart extension to provide schema validation"
 category = "main"
 optional = false
@@ -414,7 +415,10 @@ python-versions = ">=3.7"
 [package.dependencies]
 pydantic = ">=1.9"
 pyhumps = ">=1.6.1"
-quart = ">=0.16.3"
+quart = ">=0.18"
+
+[package.extras]
+docs = ["pydata-sphinx-theme"]
 
 [[package]]
 name = "sqlalchemy"
@@ -486,11 +490,14 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "werkzeug"
-version = "2.1.2"
+version = "2.2.0"
 description = "The comprehensive WSGI web application library."
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[package.dependencies]
+MarkupSafe = ">=2.1.1"
 
 [package.extras]
 watchdog = ["watchdog"]
@@ -509,7 +516,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "1ee26bc8fb8f8967384d9ca20cb4eaf085b11b2afd9094fee34c93d4b335563d"
+content-hash = "162081777e66988014595f69dfd502b4a995d70013dd17a2e95f5ea4162a7bf4"
 
 [metadata.files]
 aiofiles = [
@@ -724,8 +731,8 @@ platformdirs = [
     {file = "platformdirs-2.5.2.tar.gz", hash = "sha256:58c8abb07dcb441e6ee4b11d8df0ac856038f944ab98b7be6b27b2a3c7feef19"},
 ]
 pluggy = [
-    {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
-    {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
+    {file = "pluggy-1.0.0-py2.py3-none-any.whl", hash = "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"},
+    {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
 priority = [
     {file = "priority-2.0.0-py3-none-any.whl", hash = "sha256:6f8eefce5f3ad59baf2c080a664037bb4725cd0a790d53d59ab4059288faf6aa"},
@@ -789,12 +796,12 @@ pytest-asyncio = [
     {file = "pytest_asyncio-0.19.0-py3-none-any.whl", hash = "sha256:7a97e37cfe1ed296e2e84941384bdd37c376453912d397ed39293e0916f521fa"},
 ]
 quart = [
-    {file = "Quart-0.17.0-py3-none-any.whl", hash = "sha256:69480e7384935feff1f50293a8cb70c5d31f568af94ed792d043bb368b50bd50"},
-    {file = "Quart-0.17.0.tar.gz", hash = "sha256:2cf213d8b83fa701a83e3b3125e9102a937cefd1e97e9583f22ee2fa79139640"},
+    {file = "Quart-0.18.0-py3-none-any.whl", hash = "sha256:5bef6711d25e379ce8a1ed3f7d3ec72eae4159d116e8d480d1cab59c8bb6f44d"},
+    {file = "Quart-0.18.0.tar.gz", hash = "sha256:0c2465ef5768890431650636f51fe2cc459de6cf4cf3363870ae2a1f3dba9eb1"},
 ]
 quart-schema = [
-    {file = "quart-schema-0.11.1.tar.gz", hash = "sha256:67602ca604d533d3ea42354d4ecf5f112720ac8c44c238cd1c1169aaa8d65b69"},
-    {file = "quart_schema-0.11.1-py3-none-any.whl", hash = "sha256:04a98f508589a3ed00d3ec8f8d506c748452db37495365c6ffa5c182ebffcce0"},
+    {file = "quart-schema-0.12.0.tar.gz", hash = "sha256:b48557ff7e441ec1c35edf777c4901c84d4794da3d6b6b2b65b96136faacfccf"},
+    {file = "quart_schema-0.12.0-py3-none-any.whl", hash = "sha256:215e4b40f2b1c84b196aaf807e6c30a9f0b27b8ddceac8b6d9c21b96bc67ea0b"},
 ]
 sqlalchemy = [
     {file = "SQLAlchemy-1.4.39-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:4770eb3ba69ec5fa41c681a75e53e0e342ac24c1f9220d883458b5596888e43a"},
@@ -851,8 +858,8 @@ typing-extensions = [
     {file = "typing_extensions-4.3.0.tar.gz", hash = "sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6"},
 ]
 werkzeug = [
-    {file = "Werkzeug-2.1.2-py3-none-any.whl", hash = "sha256:72a4b735692dd3135217911cbeaa1be5fa3f62bffb8745c5215420a03dc55255"},
-    {file = "Werkzeug-2.1.2.tar.gz", hash = "sha256:1ce08e8093ed67d638d63879fd1ba3735817f7a80de3674d293f5984f25fb6e6"},
+    {file = "Werkzeug-2.2.0-py3-none-any.whl", hash = "sha256:81806f8a5b35e6cb1b39a6f28dabf0e123f069c8596119a1a9a43838870016cd"},
+    {file = "Werkzeug-2.2.0.tar.gz", hash = "sha256:fe8bcdcef40275ed915fc734c2527a39d705b57a716d4f09e790296abbd16a7f"},
 ]
 wsproto = [
     {file = "wsproto-1.1.0-py3-none-any.whl", hash = "sha256:2218cb57952d90b9fca325c0dcfb08c3bda93e8fd8070b0a17f048e2e47a521b"},
