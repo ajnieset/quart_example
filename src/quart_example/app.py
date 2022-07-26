@@ -11,11 +11,6 @@ schema = QuartSchema()
 def create_app() -> Quart:
     app = Quart(__name__)
     schema.init_app(app)
-    app.config.update(
-        {
-            "DATABASE": app.root_path / "user.db",
-        }
-    )
 
     @app.get("/health")
     async def health():
