@@ -5,9 +5,12 @@ from quart_example.blueprints.user import blueprint as user_blueprint
 from quart_example.models.user import models
 
 
+schema = QuartSchema()  
+
+
 def create_app() -> Quart:
     app = Quart(__name__)
-    QuartSchema(app)
+    schema.init_app(app)
     app.config.update(
         {
             "DATABASE": app.root_path / "user.db",

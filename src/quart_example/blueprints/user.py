@@ -18,17 +18,17 @@ class UserIn:
 
 
 @dataclass
-class User(UserIn):
+class UserData(UserIn):
     id: int
 
 
 @dataclass
 class Users:
-    users: List[User]
+    users: List[UserData]
 
 
 @blueprint.get("/users/")
-@validate_response(Users, 200)
+# @validate_response(Users, 200)
 async def get_users():
     users = await UserModel.objects.all()
     users = [user.__dict__ for user in users]
@@ -36,21 +36,21 @@ async def get_users():
 
 
 @blueprint.get("/users/<int:user_id>")
-@validate_response(User, 200)
+@validate_response(UserData, 200)
 async def get_user(user_id):
     try:
         user = await UserModel.objects.get(id=user_id)
     except NoMatch:
         return {}, 404
-    return User(**user.__dict__), 200
+    return UserData(**user.__dict__), 200
 
 
 @blueprint.post("/users/")
 @validate_request(UserIn)
-@validate_response(User, 201)
+# @validate_response(UserData, 201)
 async def create_user(data: UserIn):
     new_user: UserModel = await UserModel.objects.create(**asdict(data))
-    return User(**new_user.__dict__), 201
+    return UserData(**new_user.__dict__), 201
 
 
 @blueprint.delete("/users/<int:user_id>")
