@@ -11,7 +11,7 @@ quart-schema = "^0.11.1"
 orm = { extras = ["sqlite"], version = "^0.3.1" }
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.1"
+pytest = "*"
 pytest-asyncio = "^0.19.0"
 black = "^22.6.0"
 isort = "^5.10.1"
@@ -24,8 +24,8 @@ build-backend = "poetry.core.masonry.api"
 asyncio_mode = "auto"
 
 [tool.poetry.scripts]
-init_db = "quart_example:init_db"
 start = "scripts:start"
+test = "scripts:test"
 
 [tool.black]
 line-length = 100

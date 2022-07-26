@@ -1,23 +1,10 @@
-from quart_example import UserIn, app
+import pytest
+from quart import Quart
 
 
-async def test_health() -> None:
+@pytest.mark.asyncio
+async def test_get_user(app: Quart) -> None:
     test_client = app.test_client()
-    response = await test_client.get("/health")
-    data = await response.get_json()
-    assert data == {"status": "healthy"}
-
-
-async def test_create_user() -> None:
-    test_client = app.test_client()
-    response = await test_client.post(
-        "/users/",
-        json=UserIn(username="test_user", email="user@test.io", password="test"),
-    )
-    data = await response.get_json()
-    assert data == {
-        "id": data["id"],
-        "username": "test_user",
-        "email": "user@test.io",
-        "password": "test",
-    }
+    response = await test_client.get("/users/1")
+    user = await response.get_json()
+    assert user["username"] == "ajnieset"

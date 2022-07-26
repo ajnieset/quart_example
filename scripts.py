@@ -11,3 +11,7 @@ def _check_call_quiet(commands: list[str], *, shell: bool = False) -> None:
 
 def start() -> None:
     _check_call_quiet(["python", "src/quart_example/app.py"])
+
+
+def test() -> None:
+    _check_call_quiet(["pytest", "tests/"])

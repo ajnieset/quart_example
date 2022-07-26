@@ -4,8 +4,7 @@ from quart_schema import QuartSchema
 from quart_example.blueprints.user import blueprint as user_blueprint
 from quart_example.models.user import models
 
-
-schema = QuartSchema()  
+schema = QuartSchema()
 
 
 def create_app() -> Quart:
