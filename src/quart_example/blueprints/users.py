@@ -1,7 +1,7 @@
 from dataclasses import asdict, dataclass
 
 from orm import NoMatch
-from quart import Blueprint
+from quart import Response, abort, Blueprint
 from quart_schema import validate_request, validate_response
 
 from quart_example.models.user import User
@@ -35,7 +35,7 @@ async def get_user(user_id):
     try:
         user = await User.objects.get(id=user_id)
     except NoMatch:
-        return {}, 404
+        return {"detail": "Not Found"}, 404
     return UserData(**user.__dict__), 200
 
 
