@@ -1,7 +1,7 @@
 from dataclasses import asdict, dataclass
 
 from orm import NoMatch
-from quart import Response, abort, Blueprint
+from quart import Blueprint
 from quart_schema import validate_request, validate_response
 
 from quart_example.models.user import User
