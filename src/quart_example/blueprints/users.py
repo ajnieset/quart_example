@@ -1,11 +1,11 @@
 from dataclasses import asdict, dataclass
-import bcrypt
 
+import bcrypt
 from orm import NoMatch
 from quart import Blueprint
 from quart_schema import validate_request, validate_response
-from quart_example.lib.errors import APIError
 
+from quart_example.lib.errors import APIError
 from quart_example.models.user import User
 
 blueprint = Blueprint("users", __name__)
@@ -52,7 +52,7 @@ async def get_users():
 @validate_request(UserIn)
 @validate_response(UserData, 201)
 async def create_user(data: UserIn):
-    data.password = bcrypt.hashpw(data.password.encode('utf-8'), bcrypt.gensalt()).decode()
+    data.password = bcrypt.hashpw(data.password.encode("utf-8"), bcrypt.gensalt()).decode()
     new_user: User = await User.objects.create(**asdict(data))
     return new_user.asdict(), 201
 
