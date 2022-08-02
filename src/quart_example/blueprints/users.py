@@ -1,8 +1,10 @@
 from dataclasses import asdict, dataclass
+import bcrypt
 
 from orm import NoMatch
 from quart import Blueprint
 from quart_schema import validate_request, validate_response
+from quart_example.lib.errors import APIError
 
 from quart_example.models.user import User
 
@@ -35,7 +37,7 @@ async def get_user(user_id):
     try:
         user = await User.objects.get(id=user_id)
     except NoMatch:
-        return {"detail": "Not Found"}, 404
+        raise APIError(404, "Not Found")
     return UserData(**user.__dict__), 200
 
 
@@ -51,6 +53,7 @@ async def get_users():
 @validate_request(UserIn)
 @validate_response(UserData, 201)
 async def create_user(data: UserIn):
+    data.password = bcrypt.hashpw(data.password.encode('utf-8'), bcrypt.gensalt()).decode()
     new_user: User = await User.objects.create(**asdict(data))
     return UserData(**new_user.__dict__), 201
 
