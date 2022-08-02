@@ -23,7 +23,6 @@ class UserData:
     id: int
     username: str
     email: str
-    password: str
 
 
 @dataclass
@@ -35,18 +34,18 @@ class Users:
 @validate_response(UserData, 200)
 async def get_user(user_id):
     try:
-        user = await User.objects.get(id=user_id)
+        user: User = await User.objects.get(id=user_id)
     except NoMatch:
         raise APIError(404, "Not Found")
-    return UserData(**user.__dict__), 200
+    return user.asdict(), 200
 
 
 @blueprint.get("/users/")
 @validate_response(Users)
 async def get_users():
-    users = await User.objects.all()
-    users = [UserData(**user.__dict__) for user in users]
-    return Users(users=users), 200
+    users: list[User] = await User.objects.all()
+    users = [UserData(**user.asdict()) for user in users]
+    return users, 200
 
 
 @blueprint.post("/users/")
@@ -55,7 +54,7 @@ async def get_users():
 async def create_user(data: UserIn):
     data.password = bcrypt.hashpw(data.password.encode('utf-8'), bcrypt.gensalt()).decode()
     new_user: User = await User.objects.create(**asdict(data))
-    return UserData(**new_user.__dict__), 201
+    return new_user.asdict(), 201
 
 
 @blueprint.delete("/users/<int:user_id>")
