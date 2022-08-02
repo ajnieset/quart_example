@@ -14,3 +14,10 @@ class User(orm.Model):
         "email": orm.String(max_length=100),
         "password": orm.String(max_length=100),
     }
+
+    def asdict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+        }
